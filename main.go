@@ -95,21 +95,21 @@ func modifyUsersInfo(users, info map[string]string) {
 
 	switch {
 	case sender_exists && reciever_exists:
-		transaction(users, info)
+		makeTransaction(users, info)
 	case sender_exists && !reciever_exists:
 		users[info["toUser"]] = string(DecToHex(0))
-		transaction(users, info)
+		makeTransaction(users, info)
 	case !sender_exists && reciever_exists:
 		users[info["fromUser"]] = string(DecToHex(0))
-	  transaction(users, info)
+	  makeTransaction(users, info)
 	case !sender_exists && !reciever_exists:
 		users[info["fromUser"]] = string(DecToHex(0))
 		users[info["toUser"]] = string(DecToHex(0))
-		transaction(users, info)
+		makeTransaction(users, info)
 	}
 }
 
-func transaction(users, info map[string]string) {
+func makeTransaction(users, info map[string]string) {
 	// Separate transaction between users in it's own function
 	senderValue := HexToDec(strings.Split(users[info["fromUser"]], "x")[0])
 	value := HexToDec(strings.Split(info["Value"], "x")[1])
