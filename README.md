@@ -1,24 +1,23 @@
-# Тестовое задание для компании Getblock
+# About
+This program computes and outputs ethereum address, which balance changed the most for the last 100 block in format:
 
-Данная программа выводит адрес, баланс которго изменился сильнее остальных за последние 100 блоков, в формате: 
+> Address with the value that changed the most: *address*
 
-> Address with the value that changed the most: *адрес*
+> Address value changed by: *absolute amount*
 
-> Address value changed by: *абсолютная величина, на которую изменился баланс адреса*
-
-## Структура пакета
+## Structure
 
 ### helpers.go
-Файл, содержащий вспомогательные функции:
-* _**GetJSON**_ - получение JSON по web-адресу
-* _**HexToDec**_ - перевод числа из шестнадцатиричной системы в десятичную
-* _**DecToHex**_ - перевод числа из десятичной системы в шестнадцатиричную
-### main.go
-* _**getLastBlockNumber**_ - получение адреса последнего блока
-* _**getTagInfo**_ - получение информации о блоке по заданному адресу
-* _**modifyTagInfo**_ - итерация по транзакциям блока и изменение данных о балансе пользователей 
-* _**modifyUsersInfo**_ - изменение данных участников транзакции
-* _**makeTransaction**_ - осуществление транзакции данных между отправителем и получателем
+* _**GetJSON**_ - получение JSON по web-адресу get JSON
+* _**HexToDec**_ - change hex number to decimal 
+* _**DecToHex**_ - change decimal number to hex
 
-  - **Почему в отдельной функции?**
-    - В функции modifyUsersInfo идет проверка на наличие адресов Отправителя и Получателя в Карте Пользователей и осуществление транзакции с различными условиями, из этого исходящими. Чтобы не копипастить большую часть кода в условиях, была создана отдельная функция для непосредственного осуществления транзакции.
+### main.go
+* _**getLastBlockNumber**_ - get last block address
+* _**getTagInfo**_ - get block info with given address
+* _**modifyTagInfo**_ - change blocks' data
+* _**modifyUsersInfo**_ - change transaction participants' data
+* _**makeTransaction**_ - make transaction between sender and reciever
+
+  - **Why separate fucntions?**
+    - modifyUsersInfo checks addresses of Sender and Reciever and makes transactions with different conditions. To prevent copypaste of huge amount of code, separate function for making transaction was created.
